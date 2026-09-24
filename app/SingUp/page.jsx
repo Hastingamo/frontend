@@ -1,5 +1,3 @@
-   
-
 "use client";
 
 import React, { useState } from "react";
@@ -45,7 +43,15 @@ export default function Page() {
 
   // Returns an error string, or null if the form is valid.
   const validate = () => {
-    const { userName, email, password, confirmPassword, gender, role, adminKey } = form;
+    const {
+      userName,
+      email,
+      password,
+      confirmPassword,
+      gender,
+      role,
+      adminKey,
+    } = form;
 
     if (!email.trim() || !EMAIL_REGEX.test(email.trim())) {
       return "Please enter a valid email address";
@@ -68,7 +74,7 @@ export default function Page() {
     return null;
   };
 
-  const handleFormSubmit = async (e) => {
+    const handleFormSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setMessage("");
@@ -125,7 +131,7 @@ export default function Page() {
     }
   };
 
- 
+
 
   
   return (
@@ -149,7 +155,9 @@ export default function Page() {
           <button
             type="button"
             className={`flex-1 py-3 px-4 rounded-full text-sm font-semibold transition-all ${
-              isSignup ? "bg-[#381932] text-white shadow-md" : "text-gray-700 hover:text-gray-900"
+              isSignup
+                ? "bg-[#381932] text-white shadow-md"
+                : "text-gray-700 hover:text-gray-900"
             }`}
             onClick={() => !isLoading && setIsSignup(true)}
           >
@@ -158,7 +166,9 @@ export default function Page() {
           <button
             type="button"
             className={`flex-1 py-3 px-4 rounded-full text-sm font-semibold transition-all ${
-              !isSignup ? "bg-[#381932] text-white shadow-md" : "text-gray-700 hover:text-gray-900"
+              !isSignup
+                ? "bg-[#381932] text-white shadow-md"
+                : "text-gray-700 hover:text-gray-900"
             }`}
             onClick={() => !isLoading && setIsSignup(false)}
           >
@@ -169,7 +179,10 @@ export default function Page() {
         <form onSubmit={handleFormSubmit} className="space-y-4">
           {isSignup && (
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Username *
               </label>
               <input
@@ -184,7 +197,10 @@ export default function Page() {
           )}
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Email *
             </label>
             <input
@@ -198,7 +214,10 @@ export default function Page() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Password *
             </label>
             <input
@@ -210,7 +229,9 @@ export default function Page() {
               required
             />
             {isSignup && form.password && (
-              <p className={`text-xs mt-1 ${isStrongPassword(form.password) ? "text-green-600" : "text-orange-600"}`}>
+              <p
+                className={`text-xs mt-1 ${isStrongPassword(form.password) ? "text-green-600" : "text-orange-600"}`}
+              >
                 {isStrongPassword(form.password)
                   ? "Strong password"
                   : "Password should be 8+ chars with upper, lower, number"}
@@ -218,27 +239,40 @@ export default function Page() {
             )}
           </div>
           <div>
-                <button onClick={() => router.push("/Profile/ForgetPassword")}>forgot Passsword </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => router.push("/SingUp/forgetPassword")}
+            >
+              forgot Passsword{" "}
+            </button>
+          </div>
 
           {isSignup && (
             <>
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Confirm Password *
                 </label>
                 <input
                   id="confirmPassword"
                   type="password"
                   value={form.confirmPassword}
-                  onChange={(e) => updateField("confirmPassword", e.target.value)}
+                  onChange={(e) =>
+                    updateField("confirmPassword", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 bg-white rounded-xl text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="gender"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Gender *
                 </label>
                 <select
@@ -256,7 +290,10 @@ export default function Page() {
               </div>
 
               <div>
-                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="role"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Role *
                 </label>
                 <select
@@ -274,7 +311,10 @@ export default function Page() {
 
               {form.role === "admin" && (
                 <div>
-                  <label htmlFor="adminKey" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="adminKey"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Admin Key *
                   </label>
                   <input
@@ -341,9 +381,12 @@ export default function Page() {
               onClick={toggleMode}
               className="text-sm text-purple-700 hover:text-purple-900 font-medium underline"
             >
-              {isSignup ? "Already have an account? Log in" : "Need an account? Sign up"}
+              {isSignup
+                ? "Already have an account? Log in"
+                : "Need an account? Sign up"}
             </button>
           </div>
+          <a href="http://localhost:3001/auth/google">Sign in with Google</a>
         </form>
       </motion.div>
     </div>
