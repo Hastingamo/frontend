@@ -180,6 +180,45 @@ export default function SellerUi() {
       >
         {uploading ? 'Uploading...' : 'Upload Image'}
       </button>
+      <form >
+            <div>
+              <label
+                htmlFor="price"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                price *
+              </label>
+              <input
+                id="price"
+                type="text"
+                value={form.price}
+                onChange={(e) => updateField("price ", e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 bg-white rounded-xl text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"
+                required
+              />
+            </div>
+<div>
+                <label
+                  htmlFor="role"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  brandName *
+                </label>
+                <select
+                  id="role"
+                  value={form.brandName}
+                  onChange={(e) => updateField("role", e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 bg-white rounded-xl text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"
+                  required
+                >
+                  <option value="buyer">Buyer</option>
+                  <option value="seller">Seller</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+
+
+        </form>
 
       {imageUrl && (
         <div className="flex flex-col items-center gap-2">
