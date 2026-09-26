@@ -67,8 +67,14 @@ import Image from 'next/image';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const initialFormState = {
+  price: '',
+  brandName: '',
+};
 
 export default function SellerUi() {
+    const [form, setForm] = useState(initialFormState);
+  
   const [imageFile, setImageFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -205,15 +211,15 @@ export default function SellerUi() {
                   brandName *
                 </label>
                 <select
-                  id="role"
+                  id="brand"
                   value={form.brandName}
                   onChange={(e) => updateField("role", e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 bg-white rounded-xl text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"
                   required
                 >
-                  <option value="buyer">Buyer</option>
-                  <option value="seller">Seller</option>
-                  <option value="admin">Admin</option>
+                  <option value="buyer">toyota</option>
+                  <option value="seller">lexus</option>
+                  <option value="admin">benz</option>
                 </select>
               </div>
 
