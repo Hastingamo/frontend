@@ -1,85 +1,83 @@
+
+
 // "use client";
-// import React, { useState, useEffect } from "react";
 // import Link from "next/link";
-// // import { useTheme } from "next-themes";
-// // import { Sun, Moon } from "lucide-react";
+// import React from "react";
 
-// function Headerss() {
-// //   const { theme, setTheme } = useTheme();
-//   const [mounted, setMounted] = useState(false);
-
-//   const mounthed = () => {
-//     setMounted(true);
-//   };
-
-//   useEffect(() => {
-//     mounthed();
-//     setMounted(true);
-//   }, []);
-
+// function Headers() {
 //   return (
-//     <>
-//       <div className=" text-white flex gap-10 flex-row p-4 bg-[#06142E]">
-//         <Link href="/">
-//                   <h1>home page</h1>
-
-//         </Link>
-//         <Link href="/Admin">
-//          Admin page
-//         </Link>
-//         <Link href="/Buyer">
-//         Buyer
-//         </Link>
-//         <Link href="/SingUp">
-//         Register Up
-//         </Link>
-//         <Link href="/seller">
-//           <h1>seller</h1>
-//         </Link>
-//                 <Link href="/Profile">
-//           Profile
-//         </Link>
-
+//     <div>
+//       <Link href="/">
+//         <h1>home page</h1>
+//       </Link>
+//        <Link href="/Admin"> Admin page  </Link>
+//       <Link href="/Buyer"> Buyer  </Link>
+//        <Link href="/SingUp"> Register Up  </Link>
+      
+//       <Link href="/Seller">
+//          <h1>seller</h1>
         
-
-//         {/* <button
-//           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-//           className="ml-auto p-2 rounded-lg bg-secondary hover:opacity-80 transition-all"
-//           aria-label="Toggle theme"
-//         >
-//           {mounted &&
-//             (theme === "dark" ? <Sun size={20} /> : <Moon size={20} />)}
-//         </button> */}
-//       </div>
-
-//       {/* <div className="grid p-4 grid-cols-4 lg:hidden">
-//           <Image src="/Image/bossvnnlogo.png" alt="logo" width={40} height={40} className="w-10 h-10 rounded-full" />
-//         <button
-//           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-//           className="ml-auto p-2 rounded-lg bg-secondary hover:opacity-80 transition-all"
-//           aria-label="Toggle theme"
-//         >
-//           {mounted &&
-//             (theme === "dark" ? <Sun size={20} /> : <Moon size={20} />)}
-//         </button>
-//         <Link href="/Login">
-//           <h1>login</h1>
-//         </Link>
-//        <SideBarss/>
-//       </div> */}
-//     </>
+//       </Link>
+//        <Link href="/Profile"><h1>Profile</h1></Link>
+//     </div>
 //   );
 // }
+
+// export default Headers;
 
 
 
 "use client";
-import React from 'react'
 
-function Headers() {
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+function Headerss() {
+  const pathname = usePathname();
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/Seller", label: "Seller Dashboard" },
+    { href: "/Profile", label: "Profile" },
+    { href: "/SingUp", label: "Account / Sign Up" },
+  ];
+
   return (
-    <div>Headers</div>
-  )
+    <header className="bg-[#06142E] border-b border-slate-800 text-white sticky top-0 z-40 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
+        {/* Brand Logo / Header Name */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500 to-indigo-500 flex items-center justify-center font-bold text-white text-sm shadow-md group-hover:scale-105 transition-transform">
+            S
+          </div>
+          <span className="font-bold text-lg tracking-tight text-white group-hover:text-purple-300 transition-colors">
+            Starlight
+          </span>
+        </Link>
+
+        {/* Navigation Links */}
+        <nav className="flex items-center gap-1 sm:gap-2">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  isActive
+                    ? "bg-purple-600/30 text-purple-300 border border-purple-500/40"
+                    : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+    </header>
+  );
 }
 
-export default Headers
+export default Headerss;
