@@ -143,6 +143,7 @@ export default function Page() {
         className="w-full max-w-md bg-[#fff3e6] border border-gray-200 rounded-2xl shadow-xl p-8 space-y-6"
       >
         <div>
+
           <h1 className="text-3xl font-bold text-center text-gray-900">
             {isSignup ? "Create Account" : "Welcome Back"}
           </h1>
