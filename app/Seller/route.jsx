@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { carApiNames } from '@/lib/carapi';
-
+import { carApiNames } from '@/lib/Carapi';
+// GET /api/cars/models?make=Toyota&year=2018
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const make = searchParams.get('make')?.trim();
